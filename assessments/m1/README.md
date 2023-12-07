@@ -1,1 +1,2 @@
-/* Add Author and Project Details here */
+Author: Christopher Hinton
+Project Details: This program will sort an array of unsigned char data items and report the analytics on the maximum, minimum, mean, and median of the dataset.  All statistics will be rounded down to the nearest integer.  After analysis and sorting are completed the information will be printed to the screen.

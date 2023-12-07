@@ -9,13 +9,16 @@
  *
  *****************************************************************************/
 /**
- * @file <Add File Name> 
- * @brief <Add Brief Description Here >
+ * @file stats.h 
+ * @brief Sorts a dataset and performs basic statistical analysis.
  *
- * <Add Extended Description Here>
+ * This program will sort an array of unsigned char data items and 
+ * report the analytics on the maximum, minimum, mean, and median 
+ * of the dataset.  All statistics will be rounded down to the 
+ * nearest integer.  After analysis and sorting are completed the information will be printed to the screen.
  *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author Christopher Hinton
+ * @date 2023-11-18
  *
  */
 
@@ -26,6 +29,25 @@
 
 /* Size of the Data Set */
 #define SIZE (40)
+
+void print_statistics(unsigned char minimum, unsigned char maximum, 
+                    int mean, unsigned char median); 
+
+void print_array(unsigned char arr[], int length);  
+
+unsigned char find_median(unsigned char arr[], int length); 
+
+int find_mean(unsigned char arr[], int length);  
+
+unsigned char find_maximum(unsigned char arr[], int length);  
+
+unsigned char find_minimum(unsigned char arr[], int length); 
+
+void sort_array(unsigned char arr[], int length);
+
+void heapify(unsigned char arr[], int n, int i);
+
+void heapSort(unsigned char arr[], int n);
 
 void main() {
 
@@ -41,3 +63,115 @@ void main() {
 }
 
 /* Add other Implementation File Code Here */
+/* A function that prints the statistics of an array including minimum, 
+    maximum, mean, and median.*/
+void print_statistics(unsigned char minimum, unsigned char maximum, 
+                    int mean, unsigned char median)
+{
+  printf("Here are a few basic statistical facts about the given dataset.");
+  printf("Minimum: %d", minimum);
+  printf("Maximum: %d", maximum);
+  printf("Median: %d", median);
+  printf("Mean: %d", mean);
+} 
+
+/* Given an array of data and a length, prints the array to the screen*/
+void print_array(unsigned char arr[], int length)
+{
+  printf("The given array is as follows: ");
+  for(int i = 0; i < length; i++)
+  {
+    printf((int)arr[i]);
+  }
+}  
+
+/* Given an array of data and a length, returns the median value. */
+unsigned char find_median(unsigned char arr[], int length)
+{
+  int num = (length + 1) / 2;
+  unsigned char median = arr[num];
+
+  return median;
+} 
+
+/* Given an array of data and a length, returns the mean. */
+int find_mean(unsigned char arr[], int length)
+{
+  int total = 0;
+  for(int i = 0; i < length; i++)
+  {
+    total += (int)arr[i];
+  }
+  return (int)total;
+}  
+
+/* Given an array of data and a length, returns the maximum. */
+unsigned char find_maximum(unsigned char arr[], int length)
+{
+  return arr[0];
+}  
+
+/* Given an array of data and a length, returns the minimum. */
+unsigned char find_minimum(unsigned char arr[], int length)
+{
+  return arr[length -1];
+}
+
+/* Given an array of data and a length, sorts the array from 
+    largest to smallest.*/
+void sort_array(unsigned char arr[], int length)
+{
+  heapSort(arr, length);
+}
+
+/* Heapify a subtree */
+void heapify(unsigned char arr[], int n, int i)
+{
+ 
+    // Initialize largest as root
+    int largest = i;
+ 
+    // left = 2*i + 1
+    int l = 2 * i + 1;
+ 
+    // right = 2*i + 2
+    int r = 2 * i + 2;
+ 
+    // If left child is larger than root
+    if (l < n && arr[l] > arr[largest])
+        largest = l;
+ 
+    // If right child is larger than largest
+    // so far
+    if (r < n && arr[r] > arr[largest])
+        largest = r;
+ 
+    // If largest is not root
+    if (largest != i) {
+        swap(arr[i], arr[largest]);
+ 
+        // Recursively heapify the affected
+        // sub-tree
+        heapify(arr, n, largest);
+    }
+}
+
+/* Heap sort function */
+void heapSort(unsigned char arr[], int n)
+{
+ 
+    // Build heap (rearrange array)
+    for (int i = n / 2 - 1; i >= 0; i--)
+        heapify(arr, n, i);
+ 
+    // One by one extract an element
+    // from heap
+    for (int i = n - 1; i > 0; i--) {
+ 
+        // Move current root to end
+        swap(arr[0], arr[i]);
+ 
+        // call max heapify on the reduced heap
+        heapify(arr, i, 0);
+    }
+}

@@ -9,32 +9,51 @@
  *
  *****************************************************************************/
 /**
- * @file <Add File Name> 
- * @brief <Add Brief Description Here >
+ * @file stats.h 
+ * @brief Sorts a dataset and performs basic statistical analysis.
  *
- * <Add Extended Description Here>
+ * This program will sort an array of unsigned char data items and 
+ * report the analytics on the maximum, minimum, mean, and median 
+ * of the dataset.  All statistics will be rounded down to the 
+ * nearest integer.  After analysis and sorting are completed the information will be printed to the screen.
  *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author Christopher Hinton
+ * @date 2023-11-18
  *
  */
 #ifndef __STATS_H__
 #define __STATS_H__
 
-/* Add Your Declarations and Function Comments here */ 
 
-/**
- * @brief <Add Brief Description of Function Here>
- *
- * <Add Extended Description Here>
- *
- * @param <Add InputName> <add description here>
- * @param <Add InputName> <add description here>
- * @param <Add InputName> <add description here>
- * @param <Add InputName> <add description here>
- *
- * @return <Add Return Informaiton here>
- */
+/* A function that prints the statistics of an array including minimum, 
+    maximum, mean, and median.*/
+void print_statistics(unsigned char minimum, unsigned char maximum, 
+                    int mean, unsigned char median); 
+
+/* Given an array of data and a length, prints the array to the screen*/
+void print_array(unsigned char arr[], int length);  
+
+/* Given an array of data and a length, returns the median value. */
+unsigned char find_median(unsigned char arr[], int length); 
+
+/* Given an array of data and a length, returns the mean. */
+int find_mean(unsigned char arr[], int length);  
+
+/* Given an array of data and a length, returns the maximum. */
+unsigned char find_maximum(unsigned char arr[], int length);  
+
+/* Given an array of data and a length, returns the minimum. */
+unsigned char find_minimum(unsigned char arr[], int length); 
+
+/* Given an array of data and a length, sorts the array from 
+    largest to smallest.*/
+void sort_array(unsigned char arr[], int length);
+
+/* Heapify a subtree */
+void heapify(unsigned char arr[], int n, int i);
+
+/* Heap sort function */
+void heapSort(unsigned char arr[], int n);
 
 
 #endif /* __STATS_H__ */
